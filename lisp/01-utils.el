@@ -29,8 +29,12 @@
     (insert (url-hexify-string text))))
 
 (defun w/url-decode-region (start end)
-  "URL decodes the current active region."
+  "URL decodes the current active region, correctly handling newlines and UTF-8."
   (interactive "r")
+  (require 'url-util)
   (let ((text (buffer-substring-no-properties start end)))
     (delete-region start end)
-    (insert (url-unhex-string text))))
+    ;; 1. Pass 't' as the second argument to url-unhex-string to allow
+    ;;    literal newlines to be preserved rather than turned into spaces.
+    ;; 2. Use decode-coding-string to handle UTF-8 sequences (like %C3%A9).
+    (insert (decode-coding-string (url-unhex-string text t) 'utf-8))))
