@@ -18,3 +18,19 @@
       (insert-file-contents filename)
       (cl-assert (eq (point) (point-min)))
       (read (current-buffer)))))
+
+(require 'url-util)
+
+(defun w/url-encode-region (start end)
+  "URL encodes the current active region."
+  (interactive "r")
+  (let ((text (buffer-substring-no-properties start end)))
+    (delete-region start end)
+    (insert (url-hexify-string text))))
+
+(defun w/url-decode-region (start end)
+  "URL decodes the current active region."
+  (interactive "r")
+  (let ((text (buffer-substring-no-properties start end)))
+    (delete-region start end)
+    (insert (url-unhex-string text))))
