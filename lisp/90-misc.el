@@ -48,6 +48,8 @@
   ;;           'append)
   )
 
+(add-to-list 'emacs-everywhere-markdown-windows ":r/.*$")
+
 (use-package bbdb
   :init
   (setq bbdb-file "~/org/bbdb.eld"))
@@ -78,6 +80,7 @@ See `set-selective-display' for docs."
   "Things to do when Emacs is idle.")
 
 (defun w/do-things-when-idle ()
+  (interactive)
   (run-hooks 'w/do-things-when-idle-hooks))
 
 (add-hook 'w/do-things-when-idle-hooks
@@ -161,7 +164,19 @@ the screen brightness as long as the input event read
 
 (add-hook 'org-present-after-navigate-functions
           #'w/org-present-prepare-slide)
+
 ;; (setq org-present-after-navigate-functions nil)
+
+(setq org-present-text-scale 1)
+
+(defun w/org-present-bigger ()
+  "Make font size larger."
+  (interactive)
+  (text-scale-increase org-present-text-scale))
+
+(advice-add #'org-present-big
+            :override #'w/org-present-bigger
+            '((name . "Make font larger each time.")))
 
 ;; start the initial frame maximized
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))

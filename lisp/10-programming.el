@@ -7,6 +7,15 @@
 (require 'ws-butler)
 (add-hook 'prog-mode-hook #'ws-butler-mode)
 
+(use-package sql
+  :init
+  (defun w/sql-send-line ()
+    "Send the current line to the SQL process."
+    (interactive)
+    (sql-send-region (line-beginning-position 1) (line-beginning-position 2)))
+  :bind (:map sql-mode-map
+              ("C-c C-c" . w/sql-send-line)))
+
 (use-package eshell
   :init
   (setq eshell-destroy-buffer-when-process-dies t)
@@ -46,7 +55,7 @@
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package web-mode
-  :mode ("\\.jsx?$"))
+  :mode ("\\.jsx?$" "\\.tsx?$"))
 
 ;;; programming modes
 (defun w/prog-mode-setup ()
@@ -103,7 +112,7 @@ If `specify-project-p' is non-nil, prompt users to select a project."
 ;;; eglot
 (use-package eglot
   :init
-  (setq eldoc-echo-area-use-multiline-p nil)
+  (setq eldoc-echo-area-use-multiline-p t)
   ;; for java
   (defcustom w/java-jdt-lsp-ls-jar nil
     "The path for Java JDT LSP server jar.
@@ -189,6 +198,10 @@ Download one at https://download.eclipse.org/jdtls/milestones/")
   ((emacs-lisp-mode clojure-mode) . enable-paredit-mode))
 
 ;;; Clojure
+(use-package cider
+  :init
+  (setq cider-repl-pop-to-buffer-on-connect nil))
+
 (use-package clay
   :after cider
   :bind (:map clojure-mode-map

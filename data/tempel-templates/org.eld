@@ -33,3 +33,5 @@ org-mode
 "#+attr_html: :title Click to enlarge the image" n
 "#+attr_html: :title 单击以放大图片 TODO" n
 "[[file:/img/" p ".jpg]]")
+
+(hugoyt "{{< youtube vid" q " >}}")

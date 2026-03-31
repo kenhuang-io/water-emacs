@@ -10,8 +10,10 @@
       company-backends '(company-bbdb
                          company-capf
                          company-files
-                         (company-dabbrev company-ispell))
-      company-idle-delay 0.8            ; beware company-ispell may make it laggy
+                         (company-dabbrev
+                          ;; company-ispell ; use flycheck instead
+                          ))
+      company-idle-delay 0.2            ; beware that company-ispell may make it laggy in org-mode
       company-minimum-prefix-length 2) ; e.g. 'fo' triggers company to start completion
 
 (add-hook 'after-init-hook 'global-company-mode)

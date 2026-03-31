@@ -185,6 +185,8 @@ Work around its incompatibility with desktop.")
                    hydra
                    use-package
                    dired-recent
+                   restclient
+                   restclient-jq
 
                    ;; UI
                    modus-themes
@@ -220,6 +222,8 @@ Work around its incompatibility with desktop.")
                    paredit
                    tiny
                    cider
+                   clojars
+                   clj-refactor
                    gtags-mode
                    hl-todo
                    ivy-xref
@@ -234,8 +238,10 @@ Work around its incompatibility with desktop.")
                    protobuf-mode
                    yaml-mode
                    ws-butler
+                   html-to-hiccup
 
                    ;; misc
+                   carbon-now-sh
                    quelpa
                    expand-region
                    keycast
@@ -245,6 +251,7 @@ Work around its incompatibility with desktop.")
                    battery-notifier
                    org-anki
                    request
+                   gptel
                    ))
     (when (and (not (assoc pkg package-archive-contents))
                (not refreshed-p))

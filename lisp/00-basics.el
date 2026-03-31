@@ -7,6 +7,7 @@
 (put 'narrow-to-region 'disabled nil)
 
 (setq blink-cursor-blinks 0)
+(setq large-file-warning-threshold (* 300 1024 1024)) ; 300MB
 (setq initial-scratch-message nil)
 (setq kill-ring-max 1000)
 (setq-default indent-tabs-mode nil) ; no TAB
