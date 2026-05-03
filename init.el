@@ -219,8 +219,10 @@ Work around its incompatibility with desktop.")
                    ;; programming
                    bison-mode
                    company-c-headers
+                   dart-mode
                    paredit
                    tiny
+                   ;; inf-clojure
                    cider
                    clojars
                    clj-refactor

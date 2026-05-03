@@ -198,6 +198,11 @@ Download one at https://download.eclipse.org/jdtls/milestones/")
   ((emacs-lisp-mode clojure-mode) . enable-paredit-mode))
 
 ;;; Clojure
+(use-package clojure-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.jank\\'" . clojure-mode))
+  (add-to-list 'auto-mode-alist '("\\.glj\\'" . clojure-mode)))
+
 (use-package cider
   :init
   (setq cider-repl-pop-to-buffer-on-connect nil))

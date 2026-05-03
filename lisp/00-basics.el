@@ -147,6 +147,18 @@
              (cons 'counsel-find-file
                    #'w/counsel-find-file-sort))
 
+;; Workaround the problem of "[Omitted long matching line]" by rg
+(setq counsel-rg-base-command
+      `("rg"
+        "--max-columns" "1024"
+        "--with-filename"
+        "--no-heading"
+        "--line-number"
+        "--color" "never"
+        "%s"
+        ,@(and (memq system-type '(ms-dos windows-nt))
+               (list "--path-separator" "/" "."))))
+
 ;; Press C-p and Enter to select current input as candidate
 ;; https://oremacs.com/2017/11/30/ivy-0.10.0/
 (setq ivy-use-selectable-prompt t)
